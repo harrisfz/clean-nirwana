@@ -1,8 +1,6 @@
-package io.sago.hfz.baraja.dagger.model;
+package io.sago.hfz.baraja.nirwana.model;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class Movie {
 

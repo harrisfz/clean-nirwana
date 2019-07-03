@@ -1,8 +1,7 @@
-package io.sago.hfz.baraja.dagger.adapters;
+package io.sago.hfz.baraja.nirwana.adapters;
 
 import com.squareup.picasso.Picasso;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,8 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.sago.hfz.baraja.dagger.R;
-import io.sago.hfz.baraja.dagger.model.Movie;
+import io.sago.hfz.baraja.nirwana.R;
+import io.sago.hfz.baraja.nirwana.model.Movie;
 
 /**
  * @author Harris Febryantony Z (harris.febryantony@dana.id)

@@ -1,4 +1,4 @@
-package io.sago.hfz.baraja.dagger.model;
+package io.sago.hfz.baraja.nirwana.model;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;

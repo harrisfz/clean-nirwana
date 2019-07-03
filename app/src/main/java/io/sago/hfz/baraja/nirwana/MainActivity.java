@@ -1,12 +1,10 @@
-package io.sago.hfz.baraja.dagger;
+package io.sago.hfz.baraja.nirwana;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
-
-import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.sago.hfz.baraja.dagger.adapters.MovieAdapter;
-import io.sago.hfz.baraja.dagger.model.Movie;
-import io.sago.hfz.baraja.dagger.model.Resp;
-import io.sago.hfz.baraja.dagger.services.TmdbApiService;
+import io.sago.hfz.baraja.nirwana.adapters.MovieAdapter;
+import io.sago.hfz.baraja.nirwana.model.Resp;
+import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 import okhttp3.Cache;
 import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -35,8 +31,6 @@ import timber.log.Timber;
 import android.os.Bundle;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

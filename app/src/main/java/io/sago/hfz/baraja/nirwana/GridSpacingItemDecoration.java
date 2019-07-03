@@ -1,4 +1,4 @@
-package io.sago.hfz.baraja.dagger;
+package io.sago.hfz.baraja.nirwana;
 
 import android.graphics.Rect;
 import android.view.View;
