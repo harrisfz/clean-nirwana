@@ -3,6 +3,9 @@ package io.sago.hfz.baraja.dagger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
+
 import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,7 @@ import io.sago.hfz.baraja.dagger.adapters.MovieAdapter;
 import io.sago.hfz.baraja.dagger.model.Movie;
 import io.sago.hfz.baraja.dagger.model.Resp;
 import io.sago.hfz.baraja.dagger.services.TmdbApiService;
+import okhttp3.Cache;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -30,6 +34,7 @@ import timber.log.Timber;
 
 import android.os.Bundle;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -41,12 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String BASE_ULR = "https://api.themoviedb.org/3/";
 
+    Picasso picasso;
+
     Retrofit retrofit;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    MovieAdapter movieAdapter = new MovieAdapter();
+    MovieAdapter movieAdapter;
 
     Unbinder unbinder;
 
@@ -61,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = gsonBuilder.create();
 
         Timber.plant(new Timber.DebugTree());
+
+        File cacheFile = new File(this.getCacheDir(), "HttpCache");
+        cacheFile.mkdirs();
+
+        Cache cache = new Cache(cacheFile, 10 * 1000 * 1000);
+
         HttpLoggingInterceptor httpLoggingInterceptor = new
             HttpLoggingInterceptor(message -> Timber.i(message));
 
@@ -83,18 +96,26 @@ public class MainActivity extends AppCompatActivity {
             })
             .build();
 
+        OkHttp3Downloader okHttp3Downloader = new OkHttp3Downloader(okHttpClient);
+
+        picasso = new Picasso.Builder(this)
+            .downloader(okHttp3Downloader)
+            .build();
+
         retrofit = new Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(BASE_ULR)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();
 
+
+        movieAdapter = new MovieAdapter(picasso);
+        recyclerView.setAdapter(movieAdapter);
         populateMovies();
     }
 
     private void initViews() {
-        recyclerView.setAdapter(movieAdapter);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2,16,true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 16, true));
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 

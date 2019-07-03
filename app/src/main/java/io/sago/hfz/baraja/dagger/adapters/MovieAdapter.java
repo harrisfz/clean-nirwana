@@ -37,9 +37,13 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         }
     };
 
-    public MovieAdapter() {
+    private final Picasso picasso;
+
+    public MovieAdapter(Picasso picasso) {
         super(DIFF_CALLBACK);
+        this.picasso = picasso;
     }
+
 
     @NonNull
     @Override
@@ -55,7 +59,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         holder.tvTitle.setText(String.format("%s", movie.getTitle()));
         holder.tvRating.setText(String.format("%s", movie.getVoteAverage()));
 
-        Picasso.with(holder.ivPoster.getContext())
+        picasso.with(holder.ivPoster.getContext())
             .load("https://image.tmdb.org/t/p/w500/"+movie.getPosterPath())
             .placeholder(R.drawable.img_poster)
             .into(holder.ivPoster);
