@@ -1,4 +1,4 @@
-package io.sago.hfz.baraja.nirwana;
+package io.sago.hfz.baraja.nirwana.view.decorator;
 
 import android.graphics.Rect;
 import android.view.View;

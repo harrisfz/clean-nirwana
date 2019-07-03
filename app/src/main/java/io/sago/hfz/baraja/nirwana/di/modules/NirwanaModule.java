@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import dagger.Module;
 import dagger.Provides;
-import io.sago.hfz.baraja.nirwana.MainActivity;
+import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 import io.sago.hfz.baraja.nirwana.di.scope.MovieApplicationScope;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 import okhttp3.OkHttpClient;
@@ -14,10 +14,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author Harris Febryantony Z (harris.febryantony@dana.id)
- * @version MoviesModule, v 0.1 2019-07-03 10:32 by Harris Febryantony Z
+ * @version NirwanaModule, v 0.1 2019-07-03 10:32 by Harris Febryantony Z
  */
 @Module(includes = OkHttpClientModule.class)
-public class MoviesModule {
+public class NirwanaModule {
 
     @Provides
     TmdbApiService TmdbService(Retrofit retrofit) {

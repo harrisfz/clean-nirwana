@@ -1,21 +1,18 @@
 package io.sago.hfz.baraja.nirwana.di.modules;
 
-import org.jetbrains.annotations.NotNull;
-
 import android.content.Context;
 
 import java.io.File;
-import java.io.IOException;
 
 import dagger.Module;
 import dagger.Provides;
-import io.sago.hfz.baraja.nirwana.MainActivity;
+import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
+import io.sago.hfz.baraja.nirwana.di.ApplicationContex;
 import okhttp3.Cache;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import timber.log.Timber;
 
@@ -23,7 +20,7 @@ import timber.log.Timber;
  * @author Harris Febryantony Z (harris.febryantony@dana.id)
  * @version OkHttpClientModule, v 0.1 2019-07-03 10:55 by Harris Febryantony Z
  */
-@Module(includes = ContextModule.class)
+@Module(includes = ApplicationContextModule.class)
 public class OkHttpClientModule {
 
     @Provides
@@ -43,7 +40,7 @@ public class OkHttpClientModule {
     }
 
     @Provides
-    File file(Context context) {
+    File file(@ApplicationContex Context context) {
         File cacheFile = new File(context.getCacheDir(), "httpCache");
         cacheFile.mkdirs();
         return cacheFile;

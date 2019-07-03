@@ -1,4 +1,4 @@
-package io.sago.hfz.baraja.nirwana;
+package io.sago.hfz.baraja.nirwana.view.activity;
 
 import com.squareup.picasso.Picasso;
 
@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.sago.hfz.baraja.nirwana.NirwanaApplication;
+import io.sago.hfz.baraja.nirwana.di.component.DaggerMainActivityComponent;
+import io.sago.hfz.baraja.nirwana.di.component.MainActivityComponent;
+import io.sago.hfz.baraja.nirwana.di.modules.MainActivityModule;
+import io.sago.hfz.baraja.nirwana.view.decorator.GridSpacingItemDecoration;
+import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.adapters.MovieAdapter;
-import io.sago.hfz.baraja.nirwana.di.component.DaggerMoviesComponent;
-import io.sago.hfz.baraja.nirwana.di.component.MoviesComponent;
-import io.sago.hfz.baraja.nirwana.di.modules.ContextModule;
 import io.sago.hfz.baraja.nirwana.model.Resp;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 import retrofit2.Call;
@@ -21,6 +24,8 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 import android.os.Bundle;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
 
-    Picasso picasso;
-
-    TmdbApiService service;
-
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @Inject
     MovieAdapter movieAdapter;
+
+    @Inject
+    TmdbApiService service;
 
     Unbinder unbinder;
 
@@ -50,16 +55,12 @@ public class MainActivity extends AppCompatActivity {
         unbinder = ButterKnife.bind(this);
         initViews();
 
-        Timber.plant(new Timber.DebugTree());
-
-        MoviesComponent moviesComponent = DaggerMoviesComponent.builder()
-            .contextModule(new ContextModule(this))
+        MainActivityComponent component = DaggerMainActivityComponent.builder()
+            .nirwanaComponent(NirwanaApplication.get(this).getNirwanaComponent())
+            .mainActivityModule(new MainActivityModule(this))
             .build();
+        component.inject(this);
 
-        picasso = moviesComponent.getPicasso();
-        service = moviesComponent.getTmdbService();
-
-        movieAdapter = new MovieAdapter(picasso);
         recyclerView.setAdapter(movieAdapter);
         populateMovies();
     }

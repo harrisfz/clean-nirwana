@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.sago.hfz.baraja.nirwana.MainActivity;
+import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.model.Movie;
 
