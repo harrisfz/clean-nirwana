@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import dagger.Module;
 import dagger.Provides;
 import io.sago.hfz.baraja.nirwana.MainActivity;
+import io.sago.hfz.baraja.nirwana.di.scope.MovieApplicationScope;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -23,12 +24,13 @@ public class MoviesModule {
         return retrofit.create(TmdbApiService.class);
     }
 
+    @MovieApplicationScope
     @Provides
     Retrofit retrofit(OkHttpClient okHttpClient,
-        GsonConverterFactory gsonConverterFactory, Gson gson) {
+        GsonConverterFactory gsonConverterFactory) {
         return new Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(MainActivity.BASE_ULR)
+            .baseUrl(MainActivity.BASE_URL)
             .addConverterFactory(gsonConverterFactory)
             .build();
     }

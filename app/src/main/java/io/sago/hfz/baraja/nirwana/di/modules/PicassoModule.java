@@ -7,6 +7,7 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
+import io.sago.hfz.baraja.nirwana.di.scope.MovieApplicationScope;
 import okhttp3.OkHttpClient;
 
 /**
@@ -16,6 +17,8 @@ import okhttp3.OkHttpClient;
 @Module(includes = {OkHttpClientModule.class})
 public class PicassoModule {
 
+
+    @MovieApplicationScope
     @Provides
     Picasso picasso(Context context, OkHttp3Downloader downloader) {
         return new Picasso.Builder(context)

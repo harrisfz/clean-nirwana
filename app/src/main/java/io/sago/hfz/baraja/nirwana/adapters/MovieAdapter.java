@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.sago.hfz.baraja.nirwana.MainActivity;
 import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.model.Movie;
 
@@ -59,7 +60,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         holder.tvRating.setText(String.format("%s", movie.getVoteAverage()));
 
         picasso.with(holder.ivPoster.getContext())
-            .load("https://image.tmdb.org/t/p/w500/"+movie.getPosterPath())
+            .load(MainActivity.BASE_IMAGE_URL +movie.getPosterPath())
             .placeholder(R.drawable.img_poster)
             .into(holder.ivPoster);
 

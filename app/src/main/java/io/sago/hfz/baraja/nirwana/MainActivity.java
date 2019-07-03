@@ -1,9 +1,5 @@
 package io.sago.hfz.baraja.nirwana;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -14,26 +10,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.sago.hfz.baraja.nirwana.adapters.MovieAdapter;
-import io.sago.hfz.baraja.nirwana.di.DaggerMoviesComponent;
-import io.sago.hfz.baraja.nirwana.di.MoviesComponent;
+import io.sago.hfz.baraja.nirwana.di.component.DaggerMoviesComponent;
+import io.sago.hfz.baraja.nirwana.di.component.MoviesComponent;
 import io.sago.hfz.baraja.nirwana.di.modules.ContextModule;
 import io.sago.hfz.baraja.nirwana.model.Resp;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
-import okhttp3.Cache;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
 import android.os.Bundle;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String API_KEY = "3f8171028d2be22d2cea4508627a837b";
 
-    public static final String BASE_ULR = "https://api.themoviedb.org/3/";
+    public static final String BASE_URL = "https://api.themoviedb.org/3/";
+
+    public static final String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
 
     Picasso picasso;
 
