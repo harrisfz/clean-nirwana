@@ -14,6 +14,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.sago.hfz.baraja.nirwana.adapters.MovieAdapter;
+import io.sago.hfz.baraja.nirwana.di.DaggerMoviesComponent;
+import io.sago.hfz.baraja.nirwana.di.MoviesComponent;
+import io.sago.hfz.baraja.nirwana.di.modules.ContextModule;
 import io.sago.hfz.baraja.nirwana.model.Resp;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 import okhttp3.Cache;
@@ -34,7 +37,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String API_KEY_TAG = "api_key";
+    public static final String API_KEY_TAG = "api_key";
 
     public static final String API_KEY = "3f8171028d2be22d2cea4508627a837b";
 
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     Picasso picasso;
 
-    Retrofit retrofit;
+    TmdbApiService service;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -58,50 +61,14 @@ public class MainActivity extends AppCompatActivity {
         unbinder = ButterKnife.bind(this);
         initViews();
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        Gson gson = gsonBuilder.create();
-
         Timber.plant(new Timber.DebugTree());
 
-        File cacheFile = new File(this.getCacheDir(), "HttpCache");
-        cacheFile.mkdirs();
-
-        Cache cache = new Cache(cacheFile, 10 * 1000 * 1000);
-
-        HttpLoggingInterceptor httpLoggingInterceptor = new
-            HttpLoggingInterceptor(message -> Timber.i(message));
-
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient okHttpClient = new OkHttpClient()
-            .newBuilder()
-            .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(chain -> {
-                Request original = chain.request();
-                HttpUrl httpUrl = original.url();
-
-                HttpUrl newHttpUrl = httpUrl.newBuilder()
-                    .addQueryParameter(API_KEY_TAG, API_KEY).build();
-
-                Request.Builder requestBuilder = original.newBuilder().url(newHttpUrl);
-
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
-            })
+        MoviesComponent moviesComponent = DaggerMoviesComponent.builder()
+            .contextModule(new ContextModule(this))
             .build();
 
-        OkHttp3Downloader okHttp3Downloader = new OkHttp3Downloader(okHttpClient);
-
-        picasso = new Picasso.Builder(this)
-            .downloader(okHttp3Downloader)
-            .build();
-
-        retrofit = new Retrofit.Builder()
-            .client(okHttpClient)
-            .baseUrl(BASE_ULR)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build();
-
+        picasso = moviesComponent.getPicasso();
+        service = moviesComponent.getTmdbService();
 
         movieAdapter = new MovieAdapter(picasso);
         recyclerView.setAdapter(movieAdapter);
@@ -114,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateMovies() {
-        Call<Resp> randomUsersCall = getRandomUserService().getPopular();
+        Call<Resp> randomUsersCall = service.getPopular();
         randomUsersCall.enqueue(new Callback<Resp>() {
             @Override
             public void onResponse(Call<Resp> call,
@@ -129,10 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 Timber.e(t);
             }
         });
-    }
-
-    public TmdbApiService getRandomUserService() {
-        return retrofit.create(TmdbApiService.class);
     }
 
     @Override
