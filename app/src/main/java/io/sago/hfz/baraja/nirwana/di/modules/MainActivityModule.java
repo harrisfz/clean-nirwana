@@ -24,6 +24,6 @@ public class MainActivityModule {
     @Provides
     @MainActivityScope
     public MovieAdapter movieAdapter(Picasso picasso) {
-        return new MovieAdapter(picasso);
+        return new MovieAdapter();
     }
 }

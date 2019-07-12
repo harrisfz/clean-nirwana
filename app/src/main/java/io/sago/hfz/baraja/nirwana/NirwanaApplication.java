@@ -3,8 +3,8 @@ package io.sago.hfz.baraja.nirwana;
 import android.app.Activity;
 import android.app.Application;
 
-import io.sago.hfz.baraja.nirwana.di.component.DaggerNirwanaComponent;
-import io.sago.hfz.baraja.nirwana.di.component.NirwanaComponent;
+import io.sago.hfz.baraja.nirwana.di.component.ApplicationComponent;
+import io.sago.hfz.baraja.nirwana.di.component.DaggerApplicationComponent;
 import io.sago.hfz.baraja.nirwana.di.modules.ApplicationContextModule;
 import timber.log.Timber;
 
@@ -14,22 +14,23 @@ import timber.log.Timber;
  */
 public class NirwanaApplication extends Application {
 
-    private NirwanaComponent nirwanaComponent;
+    private ApplicationComponent applicationComponent;
 
     public static NirwanaApplication get(Activity activity) {
         return (NirwanaApplication) activity.getApplication();
     }
 
-    public NirwanaComponent getNirwanaComponent() {
-        return nirwanaComponent;
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+
         Timber.plant(new Timber.DebugTree());
 
-        nirwanaComponent = DaggerNirwanaComponent.builder()
+        applicationComponent = DaggerApplicationComponent.builder()
             .applicationContextModule(new ApplicationContextModule(this))
             .build();
     }

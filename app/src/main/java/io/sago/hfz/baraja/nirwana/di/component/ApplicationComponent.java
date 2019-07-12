@@ -10,11 +10,11 @@ import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 
 /**
  * @author Harris Febryantony Z (harris.febryantony@dana.id)
- * @version NirwanaComponent, v 0.1 2019-07-03 10:29 by Harris Febryantony Z
+ * @version ApplicationComponent, v 0.1 2019-07-03 10:29 by Harris Febryantony Z
  */
 @MovieApplicationScope
 @Component(modules = {PicassoModule.class, NirwanaModule.class})
-public interface NirwanaComponent {
+public interface ApplicationComponent {
 
     TmdbApiService getTmdbService();
 

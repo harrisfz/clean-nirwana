@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.model.Movie;
+import timber.log.Timber;
 
 /**
  * @author Harris Febryantony Z (harris.febryantony@dana.id)
@@ -37,13 +38,9 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         }
     };
 
-    private final Picasso picasso;
-
-    public MovieAdapter(Picasso picasso) {
+    public MovieAdapter() {
         super(DIFF_CALLBACK);
-        this.picasso = picasso;
     }
-
 
     @NonNull
     @Override
@@ -56,14 +53,32 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = getItem(position);
+
         holder.tvTitle.setText(String.format("%s", movie.getTitle()));
         holder.tvRating.setText(String.format("%s", movie.getVoteAverage()));
 
-        picasso.with(holder.ivPoster.getContext())
-            .load(MainActivity.BASE_IMAGE_URL +movie.getPosterPath())
+        Picasso.with(holder.ivPoster.getContext())
+            .load(MainActivity.BASE_IMAGE_URL + movie.getPosterPath())
             .placeholder(R.drawable.img_poster)
             .into(holder.ivPoster);
 
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null)
+                onItemClickListener.onClickItem(movie);
+
+        });
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(
+        OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+
+        void onClickItem(Movie position);
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -77,7 +92,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         @BindView(R.id.image_view_poster)
         ImageView ivPoster;
 
-        public MovieViewHolder(@NonNull View itemView) {
+        MovieViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

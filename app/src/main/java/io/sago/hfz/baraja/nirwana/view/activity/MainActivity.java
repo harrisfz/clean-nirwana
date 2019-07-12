@@ -1,18 +1,17 @@
 package io.sago.hfz.baraja.nirwana.view.activity;
 
-import com.squareup.picasso.Picasso;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.sago.hfz.baraja.nirwana.NirwanaApplication;
+import io.sago.hfz.baraja.nirwana.di.component.ApplicationComponent;
 import io.sago.hfz.baraja.nirwana.di.component.DaggerMainActivityComponent;
 import io.sago.hfz.baraja.nirwana.di.component.MainActivityComponent;
 import io.sago.hfz.baraja.nirwana.di.modules.MainActivityModule;
+import io.sago.hfz.baraja.nirwana.model.Movie;
 import io.sago.hfz.baraja.nirwana.view.decorator.GridSpacingItemDecoration;
 import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.adapters.MovieAdapter;
@@ -25,9 +24,12 @@ import timber.log.Timber;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     public static final String API_KEY_TAG = "api_key";
 
@@ -46,29 +48,27 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     TmdbApiService service;
 
-    Unbinder unbinder;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        unbinder = ButterKnife.bind(this);
-        initViews();
 
-        MainActivityComponent component = DaggerMainActivityComponent.builder()
-            .nirwanaComponent(NirwanaApplication.get(this).getNirwanaComponent())
-            .mainActivityModule(new MainActivityModule(this))
-            .build();
-        component.inject(this);
-
-        recyclerView.setAdapter(movieAdapter);
         populateMovies();
     }
 
-    private void initViews() {
+    @Override
+    protected void initViews() {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 16, true));
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        recyclerView.setAdapter(movieAdapter);
+
+        movieAdapter.setOnItemClickListener(position -> {
+            movieList.remove(position);
+            movieAdapter.submitList(new ArrayList<>(movieList));
+        });
     }
+
+    List<Movie> movieList;
 
     private void populateMovies() {
         Call<Resp> randomUsersCall = service.getPopular();
@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Resp> call,
                 @NonNull Response<Resp> response) {
                 if (response.isSuccessful()) {
-                    movieAdapter.submitList(response.body().getResults());
+                    movieList = response.body().getResults();
+                    movieAdapter.submitList(new ArrayList<>(movieList));
                 }
             }
 
@@ -89,9 +90,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (unbinder != null)
-            unbinder.unbind();
+    protected void inject(ApplicationComponent applicationComponent) {
+        MainActivityComponent component = DaggerMainActivityComponent.builder()
+            .applicationComponent(applicationComponent)
+            .mainActivityModule(new MainActivityModule(this))
+            .build();
+        component.inject(this);
+    }
+
+    @Override
+    int getLayout() {
+        return R.layout.activity_main;
     }
 }
