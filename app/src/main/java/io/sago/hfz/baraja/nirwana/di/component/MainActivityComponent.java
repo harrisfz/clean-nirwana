@@ -3,6 +3,7 @@ package io.sago.hfz.baraja.nirwana.di.component;
 import dagger.Component;
 import io.sago.hfz.baraja.nirwana.di.modules.MainActivityModule;
 import io.sago.hfz.baraja.nirwana.di.scope.MainActivityScope;
+import io.sago.hfz.baraja.nirwana.view.activity.BaseActivity;
 import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 
 /**
@@ -12,6 +13,5 @@ import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 @Component(modules = MainActivityModule.class, dependencies = ApplicationComponent.class)
 @MainActivityScope
 public interface MainActivityComponent {
-
     void inject(MainActivity main);
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.sago.hfz.baraja.nirwana">
+          package="io.sago.hfz.baraja.nirwana">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".NirwanaApplication"
         android:allowBackup="true"
@@ -11,7 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="io.sago.hfz.baraja.nirwana.view.activity.MainActivity">
+        <activity
+            android:name=".view.activity.MovieDetaisActivity"
+            android:label="@string/title_activity_movie_detais"
+            android:parentActivityName=".view.activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.sago.hfz.baraja.nirwana.view.activity.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".view.activity.Main2Activity"
+            android:label="@string/title_activity_main2">
+        </activity>
+        <activity android:name=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

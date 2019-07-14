@@ -20,6 +20,7 @@ public class ActivityContextModule {
     public ActivityContextModule(Context context) {
         this.context = context;
     }
+
     @ApplicationContex
     @MovieApplicationScope
     @Provides

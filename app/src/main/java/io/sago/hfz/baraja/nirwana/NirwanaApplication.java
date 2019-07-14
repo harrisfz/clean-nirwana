@@ -5,7 +5,6 @@ import android.app.Application;
 
 import io.sago.hfz.baraja.nirwana.di.component.ApplicationComponent;
 import io.sago.hfz.baraja.nirwana.di.component.DaggerApplicationComponent;
-import io.sago.hfz.baraja.nirwana.di.modules.ApplicationContextModule;
 import timber.log.Timber;
 
 /**
@@ -27,11 +26,17 @@ public class NirwanaApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initializeTimber();
+        initializeInjector();
 
+    }
+
+    private void initializeTimber() {
         Timber.plant(new Timber.DebugTree());
+    }
 
+    private void initializeInjector() {
         applicationComponent = DaggerApplicationComponent.builder()
-            .applicationContextModule(new ApplicationContextModule(this))
             .build();
     }
 }

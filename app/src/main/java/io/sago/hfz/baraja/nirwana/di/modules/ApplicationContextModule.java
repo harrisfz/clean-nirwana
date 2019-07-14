@@ -16,7 +16,7 @@ import io.sago.hfz.baraja.nirwana.di.scope.MovieApplicationScope;
 @Module
 public class ApplicationContextModule {
 
-    Context context;
+    private final Context context;
 
     public ApplicationContextModule(Context context) {
         this.context = context;

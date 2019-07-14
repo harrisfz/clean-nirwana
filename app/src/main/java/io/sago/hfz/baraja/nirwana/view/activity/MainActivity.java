@@ -1,5 +1,7 @@
 package io.sago.hfz.baraja.nirwana.view.activity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +14,7 @@ import io.sago.hfz.baraja.nirwana.di.component.DaggerMainActivityComponent;
 import io.sago.hfz.baraja.nirwana.di.component.MainActivityComponent;
 import io.sago.hfz.baraja.nirwana.di.modules.MainActivityModule;
 import io.sago.hfz.baraja.nirwana.model.Movie;
+import io.sago.hfz.baraja.nirwana.navigation.Navigator;
 import io.sago.hfz.baraja.nirwana.view.decorator.GridSpacingItemDecoration;
 import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.adapters.MovieAdapter;
@@ -22,14 +25,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemReselectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     public static final String API_KEY_TAG = "api_key";
 
@@ -38,6 +43,9 @@ public class MainActivity extends BaseActivity {
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
 
     public static final String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+
+    @BindView(R.id.nav_view)
+    BottomNavigationView bottomNavigationView;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -57,14 +65,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 16, true));
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         recyclerView.setAdapter(movieAdapter);
 
-        movieAdapter.setOnItemClickListener(position -> {
-            movieList.remove(position);
+        movieAdapter.setOnItemClickListener(movie -> {
+            movieList.remove(movie);
             movieAdapter.submitList(new ArrayList<>(movieList));
+
+            navigator.navigateToMovieDetail(this);
         });
     }
 
@@ -101,5 +113,22 @@ public class MainActivity extends BaseActivity {
     @Override
     int getLayout() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.navigation_movies:
+                return true;
+            case R.id.navigation_tv:
+                return true;
+            default:
+                return false;
+        }
     }
 }
