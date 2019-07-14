@@ -22,7 +22,7 @@ import io.reactivex.Observable;
 import io.sago.hfz.baraja.domain.executor.PostExecutionThread;
 import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
 import io.sago.hfz.baraja.domain.model.Movie;
-import io.sago.hfz.baraja.domain.repository.UserRepository;
+import io.sago.hfz.baraja.domain.repository.MovieRepository;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
@@ -30,19 +30,19 @@ import io.sago.hfz.baraja.domain.repository.UserRepository;
  */
 public class GetMovieDetails extends UseCase<Movie, GetMovieDetails.Params> {
 
-  private final UserRepository userRepository;
+  private final MovieRepository movieRepository;
 
   @Inject
-  GetMovieDetails(UserRepository userRepository, ThreadExecutor threadExecutor,
+  GetMovieDetails(MovieRepository movieRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
-    this.userRepository = userRepository;
+    this.movieRepository = movieRepository;
   }
 
   @Override
   Observable<Movie> buildUseCaseObservable(Params params) {
     Preconditions.checkNotNull(params);
-    return this.userRepository.movie(params.userId);
+    return this.movieRepository.movie(params.userId);
   }
 
   public static final class Params {

@@ -72,6 +72,10 @@ public class Movie {
 
     private String status;
 
+    public Movie(int id) {
+        this.id = id;
+    }
+
     public String getOriginalLanguage() {
         return originalLanguage;
     }

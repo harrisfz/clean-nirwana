@@ -24,7 +24,7 @@ import io.sago.hfz.baraja.domain.model.Movie;
  * Interface that represents a Repository for getting
  * {@link io.sago.hfz.baraja.domain.model.Movie} related data.
  */
-public interface UserRepository {
+public interface MovieRepository {
 
     /**
      * Get an {@link Observable} which will emit a List of
