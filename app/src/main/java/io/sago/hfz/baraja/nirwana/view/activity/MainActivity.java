@@ -1,38 +1,24 @@
 package io.sago.hfz.baraja.nirwana.view.activity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import io.sago.hfz.baraja.nirwana.NirwanaApplication;
-import io.sago.hfz.baraja.nirwana.di.component.ApplicationComponent;
-import io.sago.hfz.baraja.nirwana.di.component.DaggerMainActivityComponent;
-import io.sago.hfz.baraja.nirwana.di.component.MainActivityComponent;
-import io.sago.hfz.baraja.nirwana.di.modules.MainActivityModule;
-import io.sago.hfz.baraja.nirwana.model.Movie;
-import io.sago.hfz.baraja.nirwana.navigation.Navigator;
-import io.sago.hfz.baraja.nirwana.view.decorator.GridSpacingItemDecoration;
-import io.sago.hfz.baraja.nirwana.R;
-import io.sago.hfz.baraja.nirwana.adapters.MovieAdapter;
-import io.sago.hfz.baraja.nirwana.model.Resp;
-import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
+import io.sago.hfz.baraja.nirwana.NirwanaApplication;
+import io.sago.hfz.baraja.nirwana.R;
+import io.sago.hfz.baraja.nirwana.di.component.ApplicationComponent;
+import io.sago.hfz.baraja.nirwana.di.component.ActivityComponent;
+import io.sago.hfz.baraja.nirwana.di.component.DaggerActivityComponent;
+import io.sago.hfz.baraja.nirwana.di.modules.ActivityModule;
+import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
+import io.sago.hfz.baraja.nirwana.view.adapter.SectionsPagerAdapter;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemReselectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -44,14 +30,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     public static final String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
 
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+
+    @BindView(R.id.tabs)
+    TabLayout tabLayout;
+
     @BindView(R.id.nav_view)
     BottomNavigationView bottomNavigationView;
-
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-
-    @Inject
-    MovieAdapter movieAdapter;
 
     @Inject
     TmdbApiService service;
@@ -60,54 +46,23 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        populateMovies();
+
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
+            getSupportFragmentManager());
+
+
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
     protected void initViews() {
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 16, true));
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
-        recyclerView.setAdapter(movieAdapter);
-
-        movieAdapter.setOnItemClickListener(movie -> {
-            movieList.remove(movie);
-            movieAdapter.submitList(new ArrayList<>(movieList));
-
-            navigator.navigateToMovieDetail(this);
-        });
-    }
-
-    List<Movie> movieList;
-
-    private void populateMovies() {
-        Call<Resp> randomUsersCall = service.getPopular();
-        randomUsersCall.enqueue(new Callback<Resp>() {
-            @Override
-            public void onResponse(Call<Resp> call,
-                @NonNull Response<Resp> response) {
-                if (response.isSuccessful()) {
-                    movieList = response.body().getResults();
-                    movieAdapter.submitList(new ArrayList<>(movieList));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Resp> call, Throwable t) {
-                Timber.e(t);
-            }
-        });
     }
 
     @Override
     protected void inject(ApplicationComponent applicationComponent) {
-        MainActivityComponent component = DaggerMainActivityComponent.builder()
-            .applicationComponent(applicationComponent)
-            .mainActivityModule(new MainActivityModule(this))
-            .build();
-        component.inject(this);
+
     }
 
     @Override

@@ -11,6 +11,7 @@ import io.sago.hfz.baraja.nirwana.view.activity.MovieDetaisActivity;
  * @author Harris Febryantony Z (harris.febryantony@dana.id)
  * @version Navigator, v 0.1 2019-07-13 17:33 by Harris Febryantony Z
  */
+
 public class Navigator {
 
     @Inject

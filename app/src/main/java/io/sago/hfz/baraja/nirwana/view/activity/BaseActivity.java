@@ -28,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initInjector();
+        NirwanaApplication.get(this).getApplicationComponent().inject(this);
 
         setContentView(getLayout());
 
@@ -36,19 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         initViews();
     }
-
-    private void initInjector() {
-        ApplicationComponent applicationComponent = NirwanaApplication.get(this)
-            .getApplicationComponent();
-        applicationComponent.inject(this);
-
-        // to init injector on child class
-        inject(applicationComponent);
-    }
-
-    ;
-
-    protected abstract void initViews();
 
     @Override
     protected void onDestroy() {
@@ -58,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             unbinder.unbind();
     }
 
-    protected abstract void inject(ApplicationComponent applicationComponent);
+    protected abstract void initViews();
 
     @LayoutRes
     abstract int getLayout();

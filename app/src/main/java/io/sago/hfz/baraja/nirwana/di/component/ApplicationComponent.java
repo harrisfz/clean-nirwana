@@ -1,6 +1,7 @@
 package io.sago.hfz.baraja.nirwana.di.component;
 
 import dagger.Component;
+import io.sago.hfz.baraja.nirwana.NirwanaApplication;
 import io.sago.hfz.baraja.nirwana.di.modules.ApplicationModule;
 import io.sago.hfz.baraja.nirwana.di.scope.MovieApplicationScope;
 import io.sago.hfz.baraja.nirwana.view.activity.BaseActivity;
@@ -12,5 +13,8 @@ import io.sago.hfz.baraja.nirwana.view.activity.BaseActivity;
 @MovieApplicationScope
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
+
     void inject(BaseActivity baseActivity);
+
+    void inject(NirwanaApplication nirwanaApplication);
 }

@@ -2,7 +2,6 @@ package io.sago.hfz.baraja.nirwana.di.modules;
 
 import dagger.Module;
 import dagger.Provides;
-import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -20,11 +19,6 @@ import timber.log.Timber;
  */
 @Module
 public class RetrofitModule {
-
-    @Provides
-    TmdbApiService tmdbApiService(Retrofit retrofit) {
-        return retrofit.create(TmdbApiService.class);
-    }
 
     @Provides
     HttpLoggingInterceptor httpLoggingInterceptor() {

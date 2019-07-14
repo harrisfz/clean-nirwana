@@ -1,4 +1,4 @@
-package io.sago.hfz.baraja.nirwana.adapters;
+package io.sago.hfz.baraja.nirwana.view.adapter;
 
 import com.squareup.picasso.Picasso;
 
@@ -8,21 +8,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.model.Movie;
-import timber.log.Timber;
+import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 
 /**
  * @author Harris Febryantony Z (harris.febryantony@dana.id)
- * @version MovieAdapter, v 0.1 2019-07-02 16:54 by Harris Febryantony Z
+ * @version MovieAdapter, v 0.1 2019-07-14 22:41 by Harris Febryantony Z
  */
+
 public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolder> {
 
     public static DiffUtil.ItemCallback<Movie> DIFF_CALLBACK = new DiffUtil.ItemCallback<Movie>() {
@@ -38,6 +40,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         }
     };
 
+    @Inject
     public MovieAdapter() {
         super(DIFF_CALLBACK);
     }
@@ -98,3 +101,4 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
         }
     }
 }
+
