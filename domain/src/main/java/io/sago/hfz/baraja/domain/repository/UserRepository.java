@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,25 +15,27 @@
  */
 package io.sago.hfz.baraja.domain.repository;
 
-import com.fernandocejas.android10.sample.domain.User;
-
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.sago.hfz.baraja.domain.model.Movie;
 
 /**
- * Interface that represents a Repository for getting {@link User} related data.
+ * Interface that represents a Repository for getting
+ * {@link io.sago.hfz.baraja.domain.model.Movie} related data.
  */
 public interface UserRepository {
-  /**
-   * Get an {@link Observable} which will emit a List of {@link User}.
-   */
-  Observable<List<User>> users();
 
-  /**
-   * Get an {@link Observable} which will emit a {@link User}.
-   *
-   * @param userId The user id used to retrieve user data.
-   */
-  Observable<User> user(final int userId);
+    /**
+     * Get an {@link Observable} which will emit a List of
+     * {@link io.sago.hfz.baraja.domain.model.Movie}.
+     */
+    Observable<List<Movie>> movies();
+
+    /**
+     * Get an {@link Observable} which will emit a {@link Movie}.
+     *
+     * @param userId The user id used to retrieve user data.
+     */
+    Observable<Movie> movie(final int userId);
 }

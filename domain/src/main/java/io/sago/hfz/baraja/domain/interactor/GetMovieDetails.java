@@ -15,34 +15,34 @@
  */
 package io.sago.hfz.baraja.domain.interactor;
 
-import com.fernandocejas.android10.sample.domain.User;
-import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
-import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import com.fernandocejas.android10.sample.domain.repository.UserRepository;
-import com.fernandocejas.arrow.checks.Preconditions;
-
 import javax.inject.Inject;
 
+import dagger.internal.Preconditions;
 import io.reactivex.Observable;
+import io.sago.hfz.baraja.domain.executor.PostExecutionThread;
+import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
+import io.sago.hfz.baraja.domain.model.Movie;
+import io.sago.hfz.baraja.domain.repository.UserRepository;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
- * retrieving data related to an specific {@link User}.
+ * retrieving data related to an specific {@link Movie}.
  */
-public class GetUserDetails extends UseCase<User, GetUserDetails.Params> {
+public class GetMovieDetails extends UseCase<Movie, GetMovieDetails.Params> {
 
   private final UserRepository userRepository;
 
   @Inject
-  GetUserDetails(UserRepository userRepository, ThreadExecutor threadExecutor,
+  GetMovieDetails(UserRepository userRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
     this.userRepository = userRepository;
   }
 
-  @Override Observable<User> buildUseCaseObservable(Params params) {
+  @Override
+  Observable<Movie> buildUseCaseObservable(Params params) {
     Preconditions.checkNotNull(params);
-    return this.userRepository.user(params.userId);
+    return this.userRepository.movie(params.userId);
   }
 
   public static final class Params {

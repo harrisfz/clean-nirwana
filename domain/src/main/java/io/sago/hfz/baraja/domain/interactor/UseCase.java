@@ -15,15 +15,15 @@
  */
 package io.sago.hfz.baraja.domain.interactor;
 
-import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
-import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import com.fernandocejas.arrow.checks.Preconditions;
 
+import dagger.internal.Preconditions;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.sago.hfz.baraja.domain.executor.PostExecutionThread;
+import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
 
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).

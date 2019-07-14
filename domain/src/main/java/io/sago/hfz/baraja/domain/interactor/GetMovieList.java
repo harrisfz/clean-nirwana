@@ -15,33 +15,33 @@
  */
 package io.sago.hfz.baraja.domain.interactor;
 
-import com.fernandocejas.android10.sample.domain.User;
-import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
-import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import com.fernandocejas.android10.sample.domain.repository.UserRepository;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.sago.hfz.baraja.domain.executor.PostExecutionThread;
+import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
+import io.sago.hfz.baraja.domain.model.Movie;
+import io.sago.hfz.baraja.domain.repository.UserRepository;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
- * retrieving a collection of all {@link User}.
+ * retrieving a collection of all {@link Movie}.
  */
-public class GetUserList extends UseCase<List<User>, Void> {
+public class GetMovieList extends UseCase<List<Movie>, Void> {
 
   private final UserRepository userRepository;
 
   @Inject
-  GetUserList(UserRepository userRepository, ThreadExecutor threadExecutor,
+  GetMovieList(UserRepository userRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
     this.userRepository = userRepository;
   }
 
-  @Override Observable<List<User>> buildUseCaseObservable(Void unused) {
-    return this.userRepository.users();
+  @Override Observable<List< Movie>> buildUseCaseObservable(Void unused) {
+    return this.userRepository.movies();
   }
 }
