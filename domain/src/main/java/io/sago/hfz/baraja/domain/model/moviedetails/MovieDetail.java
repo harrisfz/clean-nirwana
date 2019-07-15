@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.sago.hfz.baraja.domain.model;
+package io.sago.hfz.baraja.domain.model.moviedetails;
 
 import java.util.List;
 
 /**
- * Class that represents a Movie in the domain layer.
+ * Class that represents a MovieDetail in the domain layer.
  */
-public class Movie {
+public class MovieDetail {
 
     private String originalLanguage;
 
@@ -72,7 +72,7 @@ public class Movie {
 
     private String status;
 
-    public Movie(int id) {
+    public MovieDetail(int id) {
         this.id = id;
     }
 

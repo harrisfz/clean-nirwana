@@ -20,7 +20,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.sago.hfz.baraja.data.cache.MovieCache;
-import io.sago.hfz.baraja.data.entity.MovieEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
 import io.sago.hfz.baraja.data.net.RestApi;
 
 /**
@@ -43,12 +43,12 @@ class CloudMovieDataStore implements MovieDataStore {
   }
 
   @Override
-  public Observable<List<MovieEntity>> movieEntityList() {
+  public Observable<List<MovieItemEntity>> movieEntityList() {
     return this.restApi.movieEntityList();
   }
 
   @Override
-  public Observable<MovieEntity> movieEntityDetails(final int movieId) {
+  public Observable<MovieItemEntity> movieEntityDetails(final int movieId) {
     return this.restApi.movieEntityById(movieId).doOnNext(CloudMovieDataStore.this.movieCache::put);
   }
 }

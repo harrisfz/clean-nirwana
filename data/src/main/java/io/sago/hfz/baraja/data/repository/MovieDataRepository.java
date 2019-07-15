@@ -22,10 +22,10 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
-import io.sago.hfz.baraja.data.entity.mapper.MovieEntityDataMapper;
+import io.sago.hfz.baraja.data.entity.mapper.MovieItemEntityDataMapper;
 import io.sago.hfz.baraja.data.repository.datasource.MovieDataStore;
 import io.sago.hfz.baraja.data.repository.datasource.MovieDataStoreFactory;
-import io.sago.hfz.baraja.domain.model.Movie;
+import io.sago.hfz.baraja.domain.model.moviedetails.MovieDetail;
 import io.sago.hfz.baraja.domain.repository.MovieRepository;
 
 /**
@@ -35,31 +35,31 @@ import io.sago.hfz.baraja.domain.repository.MovieRepository;
 public class MovieDataRepository implements MovieRepository {
 
   private final MovieDataStoreFactory movieDataStoreFactory;
-  private final MovieEntityDataMapper movieEntityDataMapper;
+  private final MovieItemEntityDataMapper movieItemEntityDataMapper;
 
   /**
    * Constructs a {@link MovieRepository}.
    *
    * @param dataStoreFactory A factory to construct different data source implementations.
-   * @param movieEntityDataMapper {@link MovieEntityDataMapper}.
+   * @param movieItemEntityDataMapper {@link MovieItemEntityDataMapper}.
    */
   @Inject
   MovieDataRepository(MovieDataStoreFactory dataStoreFactory,
-      MovieEntityDataMapper movieEntityDataMapper) {
+      MovieItemEntityDataMapper movieItemEntityDataMapper) {
     this.movieDataStoreFactory = dataStoreFactory;
-    this.movieEntityDataMapper = movieEntityDataMapper;
+    this.movieItemEntityDataMapper = movieItemEntityDataMapper;
   }
 
   @Override
-  public Observable<List<Movie>> movies() {
+  public Observable<List<MovieDetail>> movies() {
     //we always get all movies from the cloud
     final MovieDataStore movieDataStore = this.movieDataStoreFactory.createCloudDataStore();
-    return movieDataStore.userEntityList().map(this.movieEntityDataMapper::transform);
+    return movieDataStore.userEntityList().map(this.movieItemEntityDataMapper::transform);
   }
 
   @Override
-  public Observable<Movie> movie(int movieId) {
+  public Observable<MovieDetail> movie(int movieId) {
     final MovieDataStore movieDataStore = this.movieDataStoreFactory.create(movieId);
-    return movieDataStore.userEntityDetails(movieId).map(this.movieEntityDataMapper::transform);
+    return movieDataStore.userEntityDetails(movieId).map(this.movieItemEntityDataMapper::transform);
   }
 }

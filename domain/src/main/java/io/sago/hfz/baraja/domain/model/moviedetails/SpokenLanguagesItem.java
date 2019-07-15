@@ -1,4 +1,4 @@
-package io.sago.hfz.baraja.domain.model;
+package io.sago.hfz.baraja.domain.model.moviedetails;
 
 public class SpokenLanguagesItem {
 

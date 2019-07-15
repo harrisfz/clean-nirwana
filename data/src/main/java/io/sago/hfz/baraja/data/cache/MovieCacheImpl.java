@@ -25,7 +25,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import io.sago.hfz.baraja.data.cache.serializer.Serializer;
-import io.sago.hfz.baraja.data.entity.MovieEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
 import io.sago.hfz.baraja.data.exception.UserNotFoundException;
 import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
 
@@ -68,15 +68,15 @@ public class MovieCacheImpl implements MovieCache {
   }
 
   @Override
-  public Observable<MovieEntity> get(final int movieId) {
+  public Observable<MovieItemEntity> get(final int movieId) {
     return Observable.create(emitter -> {
       final File movieEntityFile = MovieCacheImpl.this.buildFile(movieId);
       final String fileContent = MovieCacheImpl.this.fileManager.readFileContent(movieEntityFile);
-      final MovieEntity movieEntity =
-          MovieCacheImpl.this.serializer.deserialize(fileContent, MovieEntity.class);
+      final MovieItemEntity movieItemEntity =
+          MovieCacheImpl.this.serializer.deserialize(fileContent, MovieItemEntity.class);
 
-      if (movieEntity != null) {
-        emitter.onNext(movieEntity);
+      if (movieItemEntity != null) {
+        emitter.onNext(movieItemEntity);
         emitter.onComplete();
       } else {
         emitter.onError(new UserNotFoundException());
@@ -85,11 +85,11 @@ public class MovieCacheImpl implements MovieCache {
   }
 
   @Override
-  public void put(MovieEntity movieEntity) {
-    if (movieEntity != null) {
-      final File movieEntityFile = this.buildFile(movieEntity.getUserId());
-      if (!isCached(movieEntity.getUserId())) {
-        final String jsonString = this.serializer.serialize(movieEntity, MovieEntity.class);
+  public void put(MovieItemEntity movieItemEntity) {
+    if (movieItemEntity != null) {
+      final File movieEntityFile = this.buildFile(movieItemEntity.getUserId());
+      if (!isCached(movieItemEntity.getUserId())) {
+        final String jsonString = this.serializer.serialize(movieItemEntity, MovieItemEntity.class);
         this.executeAsynchronously(new CacheWriter(this.fileManager, movieEntityFile, jsonString));
         setLastCacheUpdateTimeMillis();
       }

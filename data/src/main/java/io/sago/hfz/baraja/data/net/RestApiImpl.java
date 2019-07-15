@@ -24,7 +24,7 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.sago.hfz.baraja.data.entity.MovieEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
 import io.sago.hfz.baraja.data.entity.mapper.MovieEntityJsonMapper;
 import io.sago.hfz.baraja.data.exception.NetworkConnectionException;
 
@@ -51,7 +51,7 @@ public class RestApiImpl implements RestApi {
   }
 
   @Override
-  public Observable<List<MovieEntity>> movieEntityList() {
+  public Observable<List<MovieItemEntity>> movieEntityList() {
     return Observable.create(emitter -> {
       if (isThereInternetConnection()) {
         try {
@@ -73,7 +73,7 @@ public class RestApiImpl implements RestApi {
   }
 
   @Override
-  public Observable<MovieEntity> movieEntityById(final int movieId) {
+  public Observable<MovieItemEntity> movieEntityById(final int movieId) {
     return Observable.create(emitter -> {
       if (isThereInternetConnection()) {
         try {

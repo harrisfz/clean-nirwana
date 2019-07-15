@@ -1,4 +1,4 @@
-package io.sago.hfz.baraja.domain.model;
+package io.sago.hfz.baraja.domain.model.moviedetails;
 
 public class GenresItem {
 
@@ -20,6 +20,10 @@ public class GenresItem {
 
     public int getId() {
         return id;
+    }
+
+    public GenresItem(int id) {
+        this.id = id;
     }
 
     @Override

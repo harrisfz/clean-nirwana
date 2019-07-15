@@ -19,21 +19,21 @@ package io.sago.hfz.baraja.data.repository.datasource;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.sago.hfz.baraja.data.entity.MovieEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
 
 /**
  * Interface that represents a data store from where data is retrieved.
  */
 public interface MovieDataStore {
   /**
-   * Get an {@link Observable} which will emit a List of {@link MovieEntity}.
+   * Get an {@link Observable} which will emit a List of {@link MovieItemEntity}.
    */
-  Observable<List<MovieEntity>> movieEntityList();
+  Observable<List<MovieItemEntity>> movieEntityList();
 
   /**
-   * Get an {@link Observable} which will emit a {@link MovieEntity} by its id.
+   * Get an {@link Observable} which will emit a {@link MovieItemEntity} by its id.
    *
    * @param movieId The id to retrieve movie data.
    */
-  Observable<MovieEntity> movieEntityDetails(final int movieId);
+  Observable<MovieItemEntity> movieEntityDetails(final int movieId);
 }

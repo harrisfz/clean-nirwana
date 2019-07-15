@@ -25,7 +25,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.sago.hfz.baraja.data.entity.MovieEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
 
 /**
  * Class used to transform from Strings representing json to valid objects.
@@ -40,27 +40,27 @@ public class MovieEntityJsonMapper {
   }
 
   /**
-   * Transform from valid json string to {@link MovieEntity}.
+   * Transform from valid json string to {@link MovieItemEntity}.
    *
    * @param movieJsonResponse A json representing a movie profile.
-   * @return {@link MovieEntity}.
+   * @return {@link MovieItemEntity}.
    * @throws com.google.gson.JsonSyntaxException if the json string is not a valid json structure.
    */
-  public MovieEntity transformMovieEntity(String movieJsonResponse) throws JsonSyntaxException {
-    final Type movieEntityType = new TypeToken<MovieEntity>() {}.getType();
+  public MovieItemEntity transformMovieEntity(String movieJsonResponse) throws JsonSyntaxException {
+    final Type movieEntityType = new TypeToken<MovieItemEntity>() {}.getType();
     return this.gson.fromJson(movieJsonResponse, movieEntityType);
   }
 
   /**
-   * Transform from valid json string to List of {@link MovieEntity}.
+   * Transform from valid json string to List of {@link MovieItemEntity}.
    *
    * @param movieListJsonResponse A json representing a collection of movies.
-   * @return List of {@link MovieEntity}.
+   * @return List of {@link MovieItemEntity}.
    * @throws com.google.gson.JsonSyntaxException if the json string is not a valid json structure.
    */
-  public List<MovieEntity> transformMovieEntityCollection(String movieListJsonResponse)
+  public List<MovieItemEntity> transformMovieEntityCollection(String movieListJsonResponse)
       throws JsonSyntaxException {
-    final Type listOfMovieEntityType = new TypeToken<List<MovieEntity>>() {}.getType();
+    final Type listOfMovieEntityType = new TypeToken<List<MovieItemEntity>>() {}.getType();
     return this.gson.fromJson(movieListJsonResponse, listOfMovieEntityType);
   }
 }

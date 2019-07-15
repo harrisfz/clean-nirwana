@@ -21,14 +21,14 @@ import dagger.internal.Preconditions;
 import io.reactivex.Observable;
 import io.sago.hfz.baraja.domain.executor.PostExecutionThread;
 import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
-import io.sago.hfz.baraja.domain.model.Movie;
+import io.sago.hfz.baraja.domain.model.moviedetails.MovieDetail;
 import io.sago.hfz.baraja.domain.repository.MovieRepository;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
- * retrieving data related to an specific {@link Movie}.
+ * retrieving data related to an specific {@link MovieDetail}.
  */
-public class GetMovieDetails extends UseCase<Movie, GetMovieDetails.Params> {
+public class GetMovieDetails extends UseCase<MovieDetail, GetMovieDetails.Params> {
 
   private final MovieRepository movieRepository;
 
@@ -40,7 +40,7 @@ public class GetMovieDetails extends UseCase<Movie, GetMovieDetails.Params> {
   }
 
   @Override
-  Observable<Movie> buildUseCaseObservable(Params params) {
+  Observable<MovieDetail> buildUseCaseObservable(Params params) {
     Preconditions.checkNotNull(params);
     return this.movieRepository.movie(params.userId);
   }
