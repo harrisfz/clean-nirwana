@@ -25,6 +25,7 @@ import io.reactivex.Observable;
 import io.sago.hfz.baraja.data.entity.mapper.MovieItemEntityDataMapper;
 import io.sago.hfz.baraja.data.repository.datasource.MovieDataStore;
 import io.sago.hfz.baraja.data.repository.datasource.MovieDataStoreFactory;
+import io.sago.hfz.baraja.domain.model.MovieItem;
 import io.sago.hfz.baraja.domain.model.moviedetails.MovieDetail;
 import io.sago.hfz.baraja.domain.repository.MovieRepository;
 
@@ -51,15 +52,15 @@ public class MovieDataRepository implements MovieRepository {
   }
 
   @Override
-  public Observable<List<MovieDetail>> movies() {
+  public Observable<List<MovieItem>> movies() {
     //we always get all movies from the cloud
     final MovieDataStore movieDataStore = this.movieDataStoreFactory.createCloudDataStore();
-    return movieDataStore.userEntityList().map(this.movieItemEntityDataMapper::transform);
+    return movieDataStore.movieEntityList().map(this.movieItemEntityDataMapper::transform);
   }
 
   @Override
-  public Observable<MovieDetail> movie(int movieId) {
+  public Observable<MovieItem> movie(int movieId) {
     final MovieDataStore movieDataStore = this.movieDataStoreFactory.create(movieId);
-    return movieDataStore.userEntityDetails(movieId).map(this.movieItemEntityDataMapper::transform);
+    return movieDataStore.movieEntityDetails(movieId).map(this.movieItemEntityDataMapper::transform);
   }
 }

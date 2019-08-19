@@ -82,7 +82,7 @@ public class MovieItemEntityDataMapper {
      * @return {@link MovieItem} if valid {@link MovieItemEntity} otherwise null.
      */
     public List<MovieItem> transform(Collection<MovieItemEntity> movieItemEntityCollection) {
-        final List<MovieItem> movieDetailList = new ArrayList<>(20);
+        final List<MovieItem> movieDetailList = new ArrayList<>();
         for (MovieItemEntity movieItemEntity : movieItemEntityCollection) {
             final MovieItem movieDetail = transform(movieItemEntity);
             if (movieDetail != null) {

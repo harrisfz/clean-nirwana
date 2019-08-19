@@ -61,11 +61,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     }
 
     @Override
-    protected void inject(ApplicationComponent applicationComponent) {
-
-    }
-
-    @Override
     int getLayout() {
         return R.layout.activity_main;
     }

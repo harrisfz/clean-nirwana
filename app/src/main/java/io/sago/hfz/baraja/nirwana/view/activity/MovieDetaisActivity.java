@@ -41,15 +41,6 @@ public class MovieDetaisActivity extends BaseActivity {
     }
 
     @Override
-    protected void inject(ApplicationComponent applicationComponent) {
-//        DaggerDetailMovieComponent.builder()
-//            .applicationComponent(applicationComponent)
-//            .build()
-//            .inject(this);
-
-    }
-
-    @Override
     int getLayout() {
         return R.layout.activity_movie_detais;
     }
