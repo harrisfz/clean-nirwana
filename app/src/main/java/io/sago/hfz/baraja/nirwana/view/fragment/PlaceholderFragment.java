@@ -20,7 +20,7 @@ import io.sago.hfz.baraja.nirwana.di.component.MovieComponent;
 import io.sago.hfz.baraja.nirwana.di.modules.ApiModule;
 import io.sago.hfz.baraja.nirwana.di.modules.RetrofitModule;
 import io.sago.hfz.baraja.nirwana.model.MovieModel;
-import io.sago.hfz.baraja.nirwana.model.Resp;
+import io.sago.hfz.baraja.data.entity.Resp;
 import io.sago.hfz.baraja.nirwana.navigation.Navigator;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
 import io.sago.hfz.baraja.nirwana.view.adapter.MovieAdapter;

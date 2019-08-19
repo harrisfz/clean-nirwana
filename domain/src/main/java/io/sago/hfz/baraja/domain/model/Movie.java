@@ -72,7 +72,7 @@ public class Movie {
 
     private List<ProductionCompany> productionCompanies;
 
-    private Collection belongsToCollection;
+    private BelongToCollection belongsToCollection;
 
     public Movie(int id) {
         this.id = id;
@@ -246,11 +246,11 @@ public class Movie {
         this.voteAverage = voteAverage;
     }
 
-    public Collection getBelongsToCollection() {
+    public BelongToCollection getBelongsToCollection() {
         return belongsToCollection;
     }
 
-    public void setBelongsToCollection(Collection belongsToCollection) {
+    public void setBelongsToCollection(BelongToCollection belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
 

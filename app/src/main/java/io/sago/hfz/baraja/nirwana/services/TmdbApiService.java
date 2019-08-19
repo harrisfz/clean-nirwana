@@ -1,6 +1,6 @@
 package io.sago.hfz.baraja.nirwana.services;
 
-import io.sago.hfz.baraja.nirwana.model.Resp;
+import io.sago.hfz.baraja.data.entity.Resp;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

@@ -1,85 +1,60 @@
 package io.sago.hfz.baraja.nirwana.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class MovieModel {
 
-    @SerializedName("original_language")
-    private String originalLanguage;
-
-    @SerializedName("imdb_id")
-    private String imdbId;
-
-    @SerializedName("video")
-    private boolean video;
-
-    @SerializedName("title")
-    private String title;
-
-    @SerializedName("backdrop_path")
-    private String backdropPath;
-
-    @SerializedName("revenue")
-    private int revenue;
-
-    @SerializedName("genres")
-    private List<GenreModel> genres;
-
-    @SerializedName("popularity")
-    private double popularity;
-
-    @SerializedName("production_countries")
-    private List<ProductionCountriesModel> productionCountries;
-
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("vote_count")
-    private int voteCount;
+    private String originalLanguage;
 
-    @SerializedName("budget")
-    private int budget;
-
-    @SerializedName("overview")
-    private String overview;
-
-    @SerializedName("original_title")
     private String originalTitle;
 
-    @SerializedName("runtime")
-    private int runtime;
+    private String title;
 
-    @SerializedName("poster_path")
-    private Object posterPath;
+    private String overview;
 
-    @SerializedName("spoken_languages")
-    private List<SpokenLanguagesModel> spokenLanguages;
+    private boolean video;
 
-    @SerializedName("production_companies")
-    private List<ProductionCompaniesModel> productionCompanies;
+    private String backdropPath;
 
-    @SerializedName("release_date")
-    private String releaseDate;
+    private String posterPath;
 
-    @SerializedName("vote_average")
-    private double voteAverage;
+    private double popularity;
 
-    @SerializedName("belongs_to_collection")
-    private CollectionModel belongsToCollection;
-
-    @SerializedName("tagline")
-    private String tagline;
-
-    @SerializedName("adult")
     private boolean adult;
 
-    @SerializedName("homepage")
+    private double voteAverage;
+
+    private int voteCount;
+
+    private String releaseDate;
+
+    private String imdbId;
+
+    private int revenue;
+
+    private int budget;
+
+    private int runtime;
+
+    private String tagline;
+
     private String homepage;
 
-    @SerializedName("status")
     private String status;
+
+    private List<Integer> genreIds;
+
+    private List<GenreModel> genres;
+
+    private List<ProductionCountriesModel> productionCountries;
+
+    private List<SpokenLanguagesModel> spokenLanguages;
+
+    private List<ProductionCompaniesModel> productionCompanies;
+
+    private CollectionModel belongsToCollection;
 
     public String getOriginalLanguage() {
         return originalLanguage;
@@ -128,14 +103,14 @@ public class MovieModel {
     public void setRevenue(int revenue) {
         this.revenue = revenue;
     }
-//
-//	public void setGenres(List<GenreEntity> genres){
-//		this.genres = genres;
-//	}
-//
-//	public List<GenreEntity> getGenres(){
-//		return genres;
-//	}
+
+    public List<GenreModel> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<GenreModel> genres) {
+        this.genres = genres;
+    }
 
     public double getPopularity() {
         return popularity;
@@ -205,7 +180,7 @@ public class MovieModel {
         return posterPath;
     }
 
-    public void setPosterPath(Object posterPath) {
+    public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
 
@@ -296,9 +271,9 @@ public class MovieModel {
                 ",title = '" + title + '\'' +
                 ",backdrop_path = '" + backdropPath + '\'' +
                 ",revenue = '" + revenue + '\'' +
-//			",genres = '" + genres + '\'' +
+                ",genres = '" + genres + '\'' +
                 ",popularity = '" + popularity + '\'' +
-//			",production_countries = '" + productionCountries + '\'' +
+                ",production_countries = '" + productionCountries + '\'' +
                 ",id = '" + id + '\'' +
                 ",vote_count = '" + voteCount + '\'' +
                 ",budget = '" + budget + '\'' +
@@ -306,8 +281,8 @@ public class MovieModel {
                 ",original_title = '" + originalTitle + '\'' +
                 ",runtime = '" + runtime + '\'' +
                 ",poster_path = '" + posterPath + '\'' +
-//			",spoken_languages = '" + spokenLanguages + '\'' +
-//			",production_companies = '" + productionCompanies + '\'' +
+                ",spoken_languages = '" + spokenLanguages + '\'' +
+                ",production_companies = '" + productionCompanies + '\'' +
                 ",release_date = '" + releaseDate + '\'' +
                 ",vote_average = '" + voteAverage + '\'' +
                 ",belongs_to_collection = '" + belongsToCollection + '\'' +
@@ -316,5 +291,13 @@ public class MovieModel {
                 ",homepage = '" + homepage + '\'' +
                 ",status = '" + status + '\'' +
                 "}";
+    }
+
+    public List<Integer> getGenreIds() {
+        return genreIds;
+    }
+
+    public void setGenreIds(List<Integer> genreIds) {
+        this.genreIds = genreIds;
     }
 }

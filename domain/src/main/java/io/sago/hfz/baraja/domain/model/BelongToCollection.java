@@ -1,6 +1,6 @@
 package io.sago.hfz.baraja.domain.model;
 
-public class Collection {
+public class BelongToCollection {
 
     private String backdropPath;
 
@@ -45,7 +45,7 @@ public class Collection {
     @Override
     public String toString() {
         return
-            "Collection{" +
+            "BelongToCollection{" +
                 "backdrop_path = '" + backdropPath + '\'' +
                 ",name = '" + name + '\'' +
                 ",id = '" + id + '\'' +
