@@ -24,11 +24,10 @@ import javax.inject.Singleton;
 
 import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
 import io.sago.hfz.baraja.domain.model.moviedetails.GenresItem;
-import io.sago.hfz.baraja.domain.model.moviedetails.MovieDetail;
-import io.sago.hfz.baraja.domain.model.MovieItem;
+import io.sago.hfz.baraja.domain.model.moviedetails.Movie;
 
 /**
- * Mapper class used to transform {@link MovieItemEntity} (in the data layer) to {@link MovieDetail}
+ * Mapper class used to transform {@link MovieItemEntity} (in the data layer) to {@link Movie}
  * in the
  * domain layer.
  */
@@ -40,28 +39,36 @@ public class MovieItemEntityDataMapper {
     }
 
     /**
-     * Transform a {@link MovieItemEntity} into an {@link MovieItem}.
+     * Transform a {@link MovieItemEntity} into an {@link Movie}.
      *
      * @param movieItemEntity Object to be transformed.
-     * @return {@link MovieItem} if valid {@link MovieItemEntity} otherwise null.
+     * @return {@link Movie} if valid {@link MovieItemEntity} otherwise null.
      */
-    public MovieItem transform(MovieItemEntity movieItemEntity) {
-        MovieItem movieDetail = null;
+    public Movie transform(MovieItemEntity movieItemEntity) {
+        Movie movieDetail = null;
         if (movieItemEntity != null) {
-            movieDetail = new MovieItem(movieItemEntity.getId());
-
-            movieDetail.setOverview(movieItemEntity.getOverview());
+            movieDetail = new Movie(movieItemEntity.getId());
             movieDetail.setOriginalLanguage(movieItemEntity.getOriginalLanguage());
             movieDetail.setOriginalTitle(movieItemEntity.getOriginalTitle());
-            movieDetail.setVideo(movieItemEntity.isVideo());
             movieDetail.setTitle(movieItemEntity.getTitle());
-            movieDetail.setGenreIds(movieItemEntity.getGenreIds());
+            movieDetail.setOverview(movieItemEntity.getOverview());
+            movieDetail.setVideo(movieItemEntity.isVideo());
+            movieDetail.setBackdropPath(movieDetail.getBackdropPath());
             movieDetail.setPosterPath(movieItemEntity.getPosterPath());
-            movieDetail.setBackdropPath(movieItemEntity.getBackdropPath());
-            movieDetail.setReleaseDate(movieItemEntity.getReleaseDate());
-            movieDetail.setVoteAverage(movieItemEntity.getVoteAverage());
             movieDetail.setPopularity(movieItemEntity.getPopularity());
             movieDetail.setAdult(movieItemEntity.isAdult());
+            movieDetail.setVoteAverage(movieItemEntity.getVoteAverage());
+            movieDetail.setVoteCount(movieItemEntity.getVoteCount());
+            movieDetail.setReleaseDate(movieItemEntity.getReleaseDate());
+            movieDetail.setImdbId(movieItemEntity.getImdbId());
+            movieDetail.setRevenue(movieItemEntity.getRevenue());
+            movieDetail.setBudget(movieItemEntity.getBudget());
+            movieDetail.setRuntime(movieItemEntity.getRuntime());
+            movieDetail.setTagline(movieItemEntity.getTagline());
+            movieDetail.setHomepage(movieItemEntity.getHomepage());
+            movieDetail.setStatus(movieItemEntity.getStatus());
+            movieDetail.setGenreIds(movieItemEntity.getGenreIds());
+            movieDetail.setGenres(movieDetail.getGenres());
             movieDetail.setVoteCount(movieItemEntity.getVoteCount());
         }
         return movieDetail;
@@ -76,15 +83,15 @@ public class MovieItemEntityDataMapper {
     }
 
     /**
-     * Transform a List of {@link MovieItemEntity} into a Collection of {@link MovieItem}.
+     * Transform a List of {@link MovieItemEntity} into a Collection of {@link Movie}.
      *
      * @param movieItemEntityCollection Object Collection to be transformed.
-     * @return {@link MovieItem} if valid {@link MovieItemEntity} otherwise null.
+     * @return {@link Movie} if valid {@link MovieItemEntity} otherwise null.
      */
-    public List<MovieItem> transform(Collection<MovieItemEntity> movieItemEntityCollection) {
-        final List<MovieItem> movieDetailList = new ArrayList<>();
+    public List<Movie> transform(Collection<MovieItemEntity> movieItemEntityCollection) {
+        final List<Movie> movieDetailList = new ArrayList<>();
         for (MovieItemEntity movieItemEntity : movieItemEntityCollection) {
-            final MovieItem movieDetail = transform(movieItemEntity);
+            final Movie movieDetail = transform(movieItemEntity);
             if (movieDetail != null) {
                 movieDetailList.add(movieDetail);
             }

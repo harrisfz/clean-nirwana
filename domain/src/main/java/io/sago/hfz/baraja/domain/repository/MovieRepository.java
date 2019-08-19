@@ -18,25 +18,24 @@ package io.sago.hfz.baraja.domain.repository;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.sago.hfz.baraja.domain.model.MovieItem;
-import io.sago.hfz.baraja.domain.model.moviedetails.MovieDetail;
+import io.sago.hfz.baraja.domain.model.moviedetails.Movie;
 
 /**
  * Interface that represents a Repository for getting
- * {@link MovieDetail} related data.
+ * {@link Movie} related data.
  */
 public interface MovieRepository {
 
     /**
      * Get an {@link Observable} which will emit a List of
-     * {@link MovieDetail}.
+     * {@link Movie}.
      */
-    Observable<List<MovieItem>> movies();
+    Observable<List<Movie>> movies();
 
     /**
-     * Get an {@link Observable} which will emit a {@link MovieDetail}.
+     * Get an {@link Observable} which will emit a {@link Movie}.
      *
      * @param userId The user id used to retrieve user data.
      */
-    Observable<MovieItem> movie(final int userId);
+    Observable<Movie> movie(final int userId);
 }

@@ -10,18 +10,16 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import io.sago.hfz.baraja.nirwana.NirwanaApplication;
 import io.sago.hfz.baraja.nirwana.R;
 import io.sago.hfz.baraja.nirwana.di.component.ApplicationComponent;
 import io.sago.hfz.baraja.nirwana.di.component.DaggerMovieComponent;
 import io.sago.hfz.baraja.nirwana.di.component.MovieComponent;
 import io.sago.hfz.baraja.nirwana.di.modules.ApiModule;
 import io.sago.hfz.baraja.nirwana.di.modules.RetrofitModule;
-import io.sago.hfz.baraja.nirwana.model.Movie;
+import io.sago.hfz.baraja.nirwana.model.MovieModel;
 import io.sago.hfz.baraja.nirwana.model.Resp;
 import io.sago.hfz.baraja.nirwana.navigation.Navigator;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
@@ -113,8 +111,8 @@ public class PlaceholderFragment extends BaseFragment {
             public void onResponse(Call<Resp> call,
                 @NonNull Response<Resp> response) {
                 if (response.isSuccessful()) {
-                    List<Movie> movieList = response.body().getResults();
-                    movieAdapter.submitList(new ArrayList<>(movieList));
+                    List<MovieModel> movieModelList = response.body().getResults();
+                    movieAdapter.submitList(new ArrayList<>(movieModelList));
                 }
             }
 

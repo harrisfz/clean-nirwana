@@ -2,7 +2,7 @@ package io.sago.hfz.baraja.data.entity.entity.detail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ProductionCompaniesItem{
+public class ProductionCompaniesEntity {
 
 	@SerializedName("logo_path")
 	private String logoPath;
@@ -51,7 +51,7 @@ public class ProductionCompaniesItem{
 	@Override
  	public String toString(){
 		return 
-			"ProductionCompaniesItem{" + 
+			"ProductionCompaniesEntity{" +
 			"logo_path = '" + logoPath + '\'' + 
 			",name = '" + name + '\'' + 
 			",id = '" + id + '\'' + 

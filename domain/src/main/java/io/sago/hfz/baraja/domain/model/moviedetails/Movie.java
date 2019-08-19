@@ -18,61 +18,63 @@ package io.sago.hfz.baraja.domain.model.moviedetails;
 import java.util.List;
 
 /**
- * Class that represents a MovieDetail in the domain layer.
+ * Class that represents a Movie in the domain layer.
  */
-public class MovieDetail {
-
-    private String originalLanguage;
-
-    private String imdbId;
-
-    private boolean video;
-
-    private String title;
-
-    private String backdropPath;
-
-    private int revenue;
-
-    private List<GenresItem> genres;
-
-    private double popularity;
-
-    private List<ProductionCountriesItem> productionCountries;
+public class Movie {
 
     private int id;
 
-    private int voteCount;
-
-    private int budget;
-
-    private String overview;
+    private String originalLanguage;
 
     private String originalTitle;
 
-    private int runtime;
+    private String title;
+
+    private String overview;
+
+    private boolean video;
+
+    private String backdropPath;
 
     private String posterPath;
 
-    private List<SpokenLanguagesItem> spokenLanguages;
+    private double popularity;
 
-    private List<ProductionCompaniesItem> productionCompanies;
-
-    private String releaseDate;
+    private boolean adult;
 
     private double voteAverage;
 
-    private BelongsToCollection belongsToCollection;
+    private int voteCount;
+
+    private String releaseDate;
+
+    private String imdbId;
+
+    private int revenue;
+
+    private int budget;
+
+    private int runtime;
 
     private String tagline;
-
-    private boolean adult;
 
     private String homepage;
 
     private String status;
 
-    public MovieDetail(int id) {
+    private List<Integer> genreIds;
+
+    private List<GenresItem> genres;
+
+    private List<ProductionCountriesItem> productionCountries;
+
+    private List<SpokenLanguagesItem> spokenLanguages;
+
+    private List<ProductionCompaniesItem> productionCompanies;
+
+    private BelongsToCollection belongsToCollection;
+
+    public Movie(int id) {
         this.id = id;
     }
 
@@ -82,6 +84,14 @@ public class MovieDetail {
 
     public void setOriginalLanguage(String originalLanguage) {
         this.originalLanguage = originalLanguage;
+    }
+
+    public List<Integer> getGenreIds() {
+        return genreIds;
+    }
+
+    public void setGenreIds(List<Integer> genreIds) {
+        this.genreIds = genreIds;
     }
 
     public String getImdbId() {

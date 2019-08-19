@@ -63,4 +63,7 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.20'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
 
+    api project(path: ':domain')
+    api project(path: ':data')
+
 }

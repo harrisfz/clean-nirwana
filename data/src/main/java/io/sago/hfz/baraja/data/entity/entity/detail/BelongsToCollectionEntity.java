@@ -2,7 +2,7 @@ package io.sago.hfz.baraja.data.entity.entity.detail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class BelongsToCollection{
+public class BelongsToCollectionEntity {
 
 	@SerializedName("backdrop_path")
 	private String backdropPath;
@@ -51,7 +51,7 @@ public class BelongsToCollection{
 	@Override
  	public String toString(){
 		return 
-			"BelongsToCollection{" + 
+			"BelongsToCollectionEntity{" +
 			"backdrop_path = '" + backdropPath + '\'' + 
 			",name = '" + name + '\'' + 
 			",id = '" + id + '\'' + 

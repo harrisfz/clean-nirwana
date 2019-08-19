@@ -2,7 +2,7 @@ package io.sago.hfz.baraja.data.entity.entity.detail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SpokenLanguagesItem{
+public class SpokenLanguagesEntity {
 
 	@SerializedName("name")
 	private String name;
@@ -29,7 +29,7 @@ public class SpokenLanguagesItem{
 	@Override
  	public String toString(){
 		return 
-			"SpokenLanguagesItem{" + 
+			"SpokenLanguagesEntity{" +
 			"name = '" + name + '\'' + 
 			",iso_639_1 = '" + iso6391 + '\'' + 
 			"}";

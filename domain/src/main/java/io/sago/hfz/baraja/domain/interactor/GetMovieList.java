@@ -23,14 +23,14 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.sago.hfz.baraja.domain.executor.PostExecutionThread;
 import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
-import io.sago.hfz.baraja.domain.model.moviedetails.MovieDetail;
+import io.sago.hfz.baraja.domain.model.moviedetails.Movie;
 import io.sago.hfz.baraja.domain.repository.MovieRepository;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
- * retrieving a collection of all {@link MovieDetail}.
+ * retrieving a collection of all {@link Movie}.
  */
-public class GetMovieList extends UseCase<List<MovieDetail>, Void> {
+public class GetMovieList extends UseCase<List<MovieItem>, Void> {
 
   private final MovieRepository movieRepository;
 
@@ -41,7 +41,7 @@ public class GetMovieList extends UseCase<List<MovieDetail>, Void> {
     this.movieRepository = movieRepository;
   }
 
-  @Override Observable<List<MovieDetail>> buildUseCaseObservable(Void unused) {
+  @Override Observable<List<MovieItem>> buildUseCaseObservable(Void unused) {
     return this.movieRepository.movies();
   }
 }

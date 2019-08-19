@@ -6,21 +6,20 @@ import com.google.android.material.tabs.TabLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
-import io.sago.hfz.baraja.nirwana.NirwanaApplication;
 import io.sago.hfz.baraja.nirwana.R;
-import io.sago.hfz.baraja.nirwana.di.component.ApplicationComponent;
-import io.sago.hfz.baraja.nirwana.di.component.ActivityComponent;
-import io.sago.hfz.baraja.nirwana.di.component.DaggerActivityComponent;
-import io.sago.hfz.baraja.nirwana.di.modules.ActivityModule;
+import io.sago.hfz.baraja.nirwana.model.MovieModel;
 import io.sago.hfz.baraja.nirwana.services.TmdbApiService;
+import io.sago.hfz.baraja.nirwana.view.HomeContranct;
 import io.sago.hfz.baraja.nirwana.view.adapter.SectionsPagerAdapter;
 
-public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemReselectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemReselectedListener, BottomNavigationView.OnNavigationItemSelectedListener, HomeContranct.View {
 
     public static final String API_KEY_TAG = "api_key";
 
@@ -80,5 +79,25 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             default:
                 return false;
         }
+    }
+
+    @Override
+    public void onGetMoviesSuccess(List<MovieModel> movieModels) {
+
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void dismissProgress() {
+
+    }
+
+    @Override
+    public void onError(String errorMessage) {
+
     }
 }

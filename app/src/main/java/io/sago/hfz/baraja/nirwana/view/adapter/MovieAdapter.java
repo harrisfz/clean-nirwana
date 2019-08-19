@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.sago.hfz.baraja.nirwana.R;
-import io.sago.hfz.baraja.nirwana.model.Movie;
+import io.sago.hfz.baraja.nirwana.model.MovieModel;
 import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
 
 /**
@@ -25,16 +25,16 @@ import io.sago.hfz.baraja.nirwana.view.activity.MainActivity;
  * @version MovieAdapter, v 0.1 2019-07-14 22:41 by Harris Febryantony Z
  */
 
-public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolder> {
+public class MovieAdapter extends ListAdapter<MovieModel, MovieAdapter.MovieViewHolder> {
 
-    public static DiffUtil.ItemCallback<Movie> DIFF_CALLBACK = new DiffUtil.ItemCallback<Movie>() {
+    public static DiffUtil.ItemCallback<MovieModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<MovieModel>() {
         @Override
-        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+        public boolean areItemsTheSame(@NonNull MovieModel oldItem, @NonNull MovieModel newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+        public boolean areContentsTheSame(@NonNull MovieModel oldItem, @NonNull MovieModel newItem) {
 
             return oldItem.equals(newItem);
         }
@@ -55,19 +55,19 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        Movie movie = getItem(position);
+        MovieModel movieModel = getItem(position);
 
-        holder.tvTitle.setText(String.format("%s", movie.getTitle()));
-        holder.tvRating.setText(String.format("%s", movie.getVoteAverage()));
+        holder.tvTitle.setText(String.format("%s", movieModel.getTitle()));
+        holder.tvRating.setText(String.format("%s", movieModel.getVoteAverage()));
 
         Picasso.with(holder.ivPoster.getContext())
-            .load(MainActivity.BASE_IMAGE_URL + movie.getPosterPath())
+            .load(MainActivity.BASE_IMAGE_URL + movieModel.getPosterPath())
             .placeholder(R.drawable.img_poster)
             .into(holder.ivPoster);
 
         holder.itemView.setOnClickListener(view -> {
             if (onItemClickListener != null)
-                onItemClickListener.onClickItem(movie);
+                onItemClickListener.onClickItem(movieModel);
 
         });
     }
@@ -81,7 +81,7 @@ public class MovieAdapter extends ListAdapter<Movie, MovieAdapter.MovieViewHolde
 
     public interface OnItemClickListener {
 
-        void onClickItem(Movie position);
+        void onClickItem(MovieModel position);
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {

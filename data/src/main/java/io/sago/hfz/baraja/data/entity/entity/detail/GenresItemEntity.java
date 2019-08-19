@@ -2,7 +2,7 @@ package io.sago.hfz.baraja.data.entity.entity.detail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GenresItem{
+public class GenresItemEntity {
 
 	@SerializedName("name")
 	private String name;
@@ -29,7 +29,7 @@ public class GenresItem{
 	@Override
  	public String toString(){
 		return 
-			"GenresItem{" + 
+			"GenresItemEntity{" +
 			"name = '" + name + '\'' + 
 			",id = '" + id + '\'' + 
 			"}";
