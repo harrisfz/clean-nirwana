@@ -19,16 +19,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import io.sago.hfz.baraja.data.entity.entity.detail.BelongsToCollectionEntity;
-import io.sago.hfz.baraja.data.entity.entity.detail.GenresItemEntity;
-import io.sago.hfz.baraja.data.entity.entity.detail.ProductionCompaniesEntity;
-import io.sago.hfz.baraja.data.entity.entity.detail.ProductionCountriesEntity;
-import io.sago.hfz.baraja.data.entity.entity.detail.SpokenLanguagesEntity;
+import io.sago.hfz.baraja.data.entity.entity.detail.CollectionEntity;
+import io.sago.hfz.baraja.data.entity.entity.detail.GenreEntity;
+import io.sago.hfz.baraja.data.entity.entity.detail.ProductionCompanyEntity;
+import io.sago.hfz.baraja.data.entity.entity.detail.ProductionCountryEntity;
+import io.sago.hfz.baraja.data.entity.entity.detail.SpokenLanguageEntity;
 
 /**
  * User Entity used in the data layer.
  */
-public class MovieItemEntity {
+public class MovieEntity {
 
     @SerializedName("id")
     private int id;
@@ -94,19 +94,19 @@ public class MovieItemEntity {
     private List<Integer> genreIds;
 
     @SerializedName("genres")
-    private List<GenresItemEntity> genres;
+    private List<GenreEntity> genres;
 
     @SerializedName("production_countries")
-    private List<ProductionCountriesEntity> productionCountries;
+    private List<ProductionCountryEntity> productionCountries;
 
     @SerializedName("spoken_languages")
-    private List<SpokenLanguagesEntity> spokenLanguages;
+    private List<SpokenLanguageEntity> spokenLanguages;
 
     @SerializedName("production_companies")
-    private List<ProductionCompaniesEntity> productionCompanies;
+    private List<ProductionCompanyEntity> productionCompanies;
 
     @SerializedName("belongs_to_collection")
-    private BelongsToCollectionEntity belongsToCollection;
+    private CollectionEntity belongsToCollection;
 
     public String getOverview() {
         return overview;
@@ -276,26 +276,26 @@ public class MovieItemEntity {
         this.status = status;
     }
 
-    public List<GenresItemEntity> getGenres() {
+    public List<GenreEntity> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenresItemEntity> genres) {
+    public void setGenres(List<GenreEntity> genres) {
         this.genres = genres;
     }
 
-    public List<ProductionCountriesEntity> getProductionCountries() {
+    public List<ProductionCountryEntity> getProductionCountries() {
         return productionCountries;
     }
 
-    public void setProductionCountries(List<ProductionCountriesEntity> productionCountries) {
+    public void setProductionCountries(List<ProductionCountryEntity> productionCountries) {
         this.productionCountries = productionCountries;
     }
 
     @Override
     public String toString() {
         return
-            "MovieItemEntity{" +
+            "MovieEntity{" +
                 "overview = '" + overview + '\'' +
                 ",original_language = '" + originalLanguage + '\'' +
                 ",original_title = '" + originalTitle + '\'' +
@@ -313,30 +313,30 @@ public class MovieItemEntity {
                 "}";
     }
 
-    public List<SpokenLanguagesEntity> getSpokenLanguages() {
+    public List<SpokenLanguageEntity> getSpokenLanguages() {
         return spokenLanguages;
     }
 
     public void setSpokenLanguages(
-        List<SpokenLanguagesEntity> spokenLanguages) {
+        List<SpokenLanguageEntity> spokenLanguages) {
         this.spokenLanguages = spokenLanguages;
     }
 
-    public List<ProductionCompaniesEntity> getProductionCompanies() {
+    public List<ProductionCompanyEntity> getProductionCompanies() {
         return productionCompanies;
     }
 
     public void setProductionCompanies(
-        List<ProductionCompaniesEntity> productionCompanies) {
+        List<ProductionCompanyEntity> productionCompanies) {
         this.productionCompanies = productionCompanies;
     }
 
-    public BelongsToCollectionEntity getBelongsToCollection() {
+    public CollectionEntity getBelongsToCollection() {
         return belongsToCollection;
     }
 
     public void setBelongsToCollection(
-        BelongsToCollectionEntity belongsToCollection) {
+        CollectionEntity belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
 }

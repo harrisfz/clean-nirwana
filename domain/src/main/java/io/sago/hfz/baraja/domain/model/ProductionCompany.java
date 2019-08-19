@@ -1,6 +1,6 @@
-package io.sago.hfz.baraja.domain.model.moviedetails;
+package io.sago.hfz.baraja.domain.model;
 
-public class ProductionCompaniesItem {
+public class ProductionCompany {
 
     private String logoPath;
 
@@ -45,7 +45,7 @@ public class ProductionCompaniesItem {
     @Override
     public String toString() {
         return
-            "ProductionCompaniesItem{" +
+            "ProductionCompany{" +
                 "logo_path = '" + logoPath + '\'' +
                 ",name = '" + name + '\'' +
                 ",id = '" + id + '\'' +

@@ -19,7 +19,7 @@ package io.sago.hfz.baraja.data.net;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieEntity;
 
 /**
  * RestApi for retrieving data from the network.
@@ -34,14 +34,14 @@ public interface RestApi {
   String API_URL_GET_USER_DETAILS = API_BASE_URL + "movie_";
 
   /**
-   * Retrieves an {@link Observable} which will emit a List of {@link MovieItemEntity}.
+   * Retrieves an {@link Observable} which will emit a List of {@link MovieEntity}.
    */
-  Observable<List<MovieItemEntity>> movieEntityList();
+  Observable<List<MovieEntity>> movieEntityList();
 
   /**
-   * Retrieves an {@link Observable} which will emit a {@link MovieItemEntity}.
+   * Retrieves an {@link Observable} which will emit a {@link MovieEntity}.
    *
    * @param movieId The movie id used to get movie data.
    */
-  Observable<MovieItemEntity> movieEntityById(final int movieId);
+  Observable<MovieEntity> movieEntityById(final int movieId);
 }

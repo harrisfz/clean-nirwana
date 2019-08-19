@@ -17,25 +17,25 @@ package io.sago.hfz.baraja.data.cache;
 
 
 import io.reactivex.Observable;
-import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieEntity;
 
 /**
  * An interface representing a movie Cache.
  */
 public interface MovieCache {
   /**
-   * Gets an {@link Observable} which will emit a {@link MovieItemEntity}.
+   * Gets an {@link Observable} which will emit a {@link MovieEntity}.
    *
    * @param movieId The movie id to retrieve data.
    */
-  Observable<MovieItemEntity> get(final int movieId);
+  Observable<MovieEntity> get(final int movieId);
 
   /**
    * Puts and element into the cache.
    *
-   * @param movieItemEntity Element to insert in the cache.
+   * @param movieEntity Element to insert in the cache.
    */
-  void put(MovieItemEntity movieItemEntity);
+  void put(MovieEntity movieEntity);
 
   /**
    * Checks if an element (User) exists in the cache.

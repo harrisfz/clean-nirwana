@@ -20,7 +20,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.sago.hfz.baraja.data.cache.MovieCache;
-import io.sago.hfz.baraja.data.entity.entity.MovieItemEntity;
+import io.sago.hfz.baraja.data.entity.entity.MovieEntity;
 
 /**
  * {@link MovieDataStore} implementation based on file system data store.
@@ -39,13 +39,13 @@ class DiskMovieDataStore implements MovieDataStore {
   }
 
   @Override
-  public Observable<List<MovieItemEntity>> movieEntityList() {
+  public Observable<List<MovieEntity>> movieEntityList() {
     //TODO: implement simple cache for storing/retrieving collections of movies.
     throw new UnsupportedOperationException("Operation is not available!!!");
   }
 
   @Override
-  public Observable<MovieItemEntity> movieEntityDetails(final int movieId) {
+  public Observable<MovieEntity> movieEntityDetails(final int movieId) {
      return this.movieCache.get(movieId);
   }
 }

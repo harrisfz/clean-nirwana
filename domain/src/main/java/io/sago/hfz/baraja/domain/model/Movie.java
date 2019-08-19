@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.sago.hfz.baraja.domain.model.moviedetails;
+package io.sago.hfz.baraja.domain.model;
 
 import java.util.List;
 
@@ -64,15 +64,15 @@ public class Movie {
 
     private List<Integer> genreIds;
 
-    private List<GenresItem> genres;
+    private List<Genre> genres;
 
-    private List<ProductionCountriesItem> productionCountries;
+    private List<ProductionCountry> productionCountries;
 
-    private List<SpokenLanguagesItem> spokenLanguages;
+    private List<SpokenLanguage> spokenLanguages;
 
-    private List<ProductionCompaniesItem> productionCompanies;
+    private List<ProductionCompany> productionCompanies;
 
-    private BelongsToCollection belongsToCollection;
+    private Collection belongsToCollection;
 
     public Movie(int id) {
         this.id = id;
@@ -134,11 +134,11 @@ public class Movie {
         this.revenue = revenue;
     }
 
-    public List<GenresItem> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenresItem> genres) {
+    public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
@@ -150,11 +150,11 @@ public class Movie {
         this.popularity = popularity;
     }
 
-    public List<ProductionCountriesItem> getProductionCountries() {
+    public List<ProductionCountry> getProductionCountries() {
         return productionCountries;
     }
 
-    public void setProductionCountries(List<ProductionCountriesItem> productionCountries) {
+    public void setProductionCountries(List<ProductionCountry> productionCountries) {
         this.productionCountries = productionCountries;
     }
 
@@ -214,19 +214,19 @@ public class Movie {
         this.posterPath = posterPath;
     }
 
-    public List<SpokenLanguagesItem> getSpokenLanguages() {
+    public List<SpokenLanguage> getSpokenLanguages() {
         return spokenLanguages;
     }
 
-    public void setSpokenLanguages(List<SpokenLanguagesItem> spokenLanguages) {
+    public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
         this.spokenLanguages = spokenLanguages;
     }
 
-    public List<ProductionCompaniesItem> getProductionCompanies() {
+    public List<ProductionCompany> getProductionCompanies() {
         return productionCompanies;
     }
 
-    public void setProductionCompanies(List<ProductionCompaniesItem> productionCompanies) {
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
         this.productionCompanies = productionCompanies;
     }
 
@@ -246,11 +246,11 @@ public class Movie {
         this.voteAverage = voteAverage;
     }
 
-    public BelongsToCollection getBelongsToCollection() {
+    public Collection getBelongsToCollection() {
         return belongsToCollection;
     }
 
-    public void setBelongsToCollection(BelongsToCollection belongsToCollection) {
+    public void setBelongsToCollection(Collection belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
 

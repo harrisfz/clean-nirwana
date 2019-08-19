@@ -29,7 +29,7 @@ public class SpokenLanguagesModel {
     @Override
     public String toString() {
         return
-            "SpokenLanguagesEntity{" +
+            "SpokenLanguageEntity{" +
                 "name = '" + name + '\'' +
                 ",iso_639_1 = '" + iso6391 + '\'' +
                 "}";

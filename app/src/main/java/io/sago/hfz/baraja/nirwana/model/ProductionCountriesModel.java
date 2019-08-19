@@ -29,7 +29,7 @@ public class ProductionCountriesModel {
     @Override
     public String toString() {
         return
-            "ProductionCountriesEntity{" +
+            "ProductionCountryEntity{" +
                 "iso_3166_1 = '" + iso31661 + '\'' +
                 ",name = '" + name + '\'' +
                 "}";

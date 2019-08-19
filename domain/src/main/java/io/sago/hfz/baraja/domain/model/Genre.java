@@ -1,6 +1,6 @@
-package io.sago.hfz.baraja.domain.model.moviedetails;
+package io.sago.hfz.baraja.domain.model;
 
-public class GenresItem {
+public class Genre {
 
     private String name;
 
@@ -22,14 +22,14 @@ public class GenresItem {
         return id;
     }
 
-    public GenresItem(int id) {
+    public Genre(int id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
         return
-            "GenresItem{" +
+            "Genre{" +
                 "name = '" + name + '\'' +
                 ",id = '" + id + '\'' +
                 "}";

@@ -49,7 +49,7 @@ public class ProductionCompaniesModel {
     @Override
     public String toString() {
         return
-            "ProductionCompaniesEntity{" +
+            "ProductionCompanyEntity{" +
                 "logo_path = '" + logoPath + '\'' +
                 ",name = '" + name + '\'' +
                 ",id = '" + id + '\'' +

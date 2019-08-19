@@ -67,7 +67,7 @@ public class MovieModel {
     private double voteAverage;
 
     @SerializedName("belongs_to_collection")
-    private BelongsToCollectionModel belongsToCollection;
+    private CollectionModel belongsToCollection;
 
     @SerializedName("tagline")
     private String tagline;
@@ -129,11 +129,11 @@ public class MovieModel {
         this.revenue = revenue;
     }
 //
-//	public void setGenres(List<GenresItemEntity> genres){
+//	public void setGenres(List<GenreEntity> genres){
 //		this.genres = genres;
 //	}
 //
-//	public List<GenresItemEntity> getGenres(){
+//	public List<GenreEntity> getGenres(){
 //		return genres;
 //	}
 
@@ -245,7 +245,7 @@ public class MovieModel {
         return belongsToCollection;
     }
 
-    public void setBelongsToCollection(BelongsToCollectionModel belongsToCollection) {
+    public void setBelongsToCollection(CollectionModel belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
 

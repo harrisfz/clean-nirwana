@@ -18,7 +18,7 @@ package io.sago.hfz.baraja.domain.repository;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.sago.hfz.baraja.domain.model.moviedetails.Movie;
+import io.sago.hfz.baraja.domain.model.Movie;
 
 /**
  * Interface that represents a Repository for getting

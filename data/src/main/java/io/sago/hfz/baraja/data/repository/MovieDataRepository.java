@@ -25,7 +25,7 @@ import io.reactivex.Observable;
 import io.sago.hfz.baraja.data.entity.mapper.MovieItemEntityDataMapper;
 import io.sago.hfz.baraja.data.repository.datasource.MovieDataStore;
 import io.sago.hfz.baraja.data.repository.datasource.MovieDataStoreFactory;
-import io.sago.hfz.baraja.domain.model.moviedetails.Movie;
+import io.sago.hfz.baraja.domain.model.Movie;
 import io.sago.hfz.baraja.domain.repository.MovieRepository;
 
 /**

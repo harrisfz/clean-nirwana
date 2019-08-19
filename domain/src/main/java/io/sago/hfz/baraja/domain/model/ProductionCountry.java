@@ -1,6 +1,6 @@
-package io.sago.hfz.baraja.domain.model.moviedetails;
+package io.sago.hfz.baraja.domain.model;
 
-public class ProductionCountriesItem {
+public class ProductionCountry {
 
     private String iso31661;
 
@@ -25,7 +25,7 @@ public class ProductionCountriesItem {
     @Override
     public String toString() {
         return
-            "ProductionCountriesItem{" +
+            "ProductionCountry{" +
                 "iso_3166_1 = '" + iso31661 + '\'' +
                 ",name = '" + name + '\'' +
                 "}";

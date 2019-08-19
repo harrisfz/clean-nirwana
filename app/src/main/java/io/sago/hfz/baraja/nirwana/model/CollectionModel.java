@@ -1,6 +1,10 @@
-package io.sago.hfz.baraja.domain.model.moviedetails;
+package io.sago.hfz.baraja.nirwana.model;
 
-public class BelongsToCollection {
+/**
+ * @author Harris Febryaontony Z (harris.febryantony@dana.id)
+ * @version CollectionModel, v 0.1 2019-08-20 03:34 by Harris Febryaontony Z
+ */
+public class CollectionModel {
 
     private String backdropPath;
 
@@ -10,42 +14,42 @@ public class BelongsToCollection {
 
     private String posterPath;
 
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
-
     public String getBackdropPath() {
         return backdropPath;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPosterPath() {
         return posterPath;
     }
 
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
     @Override
     public String toString() {
         return
-            "BelongsToCollection{" +
+            "CollectionEntity{" +
                 "backdrop_path = '" + backdropPath + '\'' +
                 ",name = '" + name + '\'' +
                 ",id = '" + id + '\'' +

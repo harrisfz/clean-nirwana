@@ -1,6 +1,6 @@
-package io.sago.hfz.baraja.domain.model.moviedetails;
+package io.sago.hfz.baraja.domain.model;
 
-public class SpokenLanguagesItem {
+public class SpokenLanguage {
 
     private String name;
 
@@ -25,7 +25,7 @@ public class SpokenLanguagesItem {
     @Override
     public String toString() {
         return
-            "SpokenLanguagesItem{" +
+            "SpokenLanguage{" +
                 "name = '" + name + '\'' +
                 ",iso_639_1 = '" + iso6391 + '\'' +
                 "}";

@@ -33,7 +33,7 @@ public class GenreModel {
     @Override
     public String toString() {
         return
-            "GenresItemEntity{" +
+            "GenreEntity{" +
                 "name = '" + name + '\'' +
                 ",id = '" + id + '\'' +
                 "}";

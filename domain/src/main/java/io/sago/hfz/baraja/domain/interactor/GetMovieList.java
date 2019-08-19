@@ -23,7 +23,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.sago.hfz.baraja.domain.executor.PostExecutionThread;
 import io.sago.hfz.baraja.domain.executor.ThreadExecutor;
-import io.sago.hfz.baraja.domain.model.moviedetails.Movie;
+import io.sago.hfz.baraja.domain.model.Movie;
 import io.sago.hfz.baraja.domain.repository.MovieRepository;
 
 /**
